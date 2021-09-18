@@ -2,7 +2,7 @@
  * @Description: app主题
  * @Author: iamsmiling
  * @Date: 2021-09-18 16:02:00
- * @LastEditTime: 2021-09-18 16:02:00
+ * @LastEditTime: 2021-09-18 16:28:10
  */
 import 'dart:ui';
 
@@ -56,4 +56,6 @@ abstract class AppTheme {
                 }
                 return R.color.primary;
               }))));
+
+  static ThemeData dartTheme = lightTheme;
 }

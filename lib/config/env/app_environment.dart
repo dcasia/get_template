@@ -38,14 +38,3 @@ extension AppEnvironmentHost on AppEnvironment {
       }[this] ??
       "";
 }
-
-abstract class AppConfig {
-  static AppEnvironment environment = AppEnvironment.develop;
-
-  static const String environmentKey = "APP_ENV";
-
-  // // 环境value
-  // static const String debug = "debug";
-  // static const String release = "release";
-  // static const String test = "test";
-}

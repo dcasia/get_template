@@ -2,10 +2,12 @@
  * @Description: 初始化管理统一初始化
  * @Author: iamsmiling
  * @Date: 2021-09-18 14:20:45
- * @LastEditTime: 2021-09-18 14:30:56
+ * @LastEditTime: 2021-09-18 17:00:47
  */
 import 'package:ty_flutter_cli/config/env/app_environment.dart';
+import 'package:ty_flutter_cli/config/initializer/base/device_initializer.dart';
 
+import '../app_config.dart';
 import 'base/base_initializer.dart';
 import 'base/debugger_initializer.dart';
 import 'base/logger_intilaizer.dart';
@@ -20,7 +22,8 @@ abstract class InitializerManager<T extends BaseInitilizer> {
 
     ///是否允许打印
     LoggerInitializer(),
-    DebuggerInitializer()
+    DebuggerInitializer(),
+    DeviceInitializer(),
   ];
 
   ///进行统一初始化

@@ -12,6 +12,7 @@ import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flustars/flustars.dart';
+import 'package:ty_flutter_cli/config/app_config.dart';
 import 'package:ty_flutter_cli/config/env/app_environment.dart';
 import 'package:ty_flutter_cli/constants/sp_key.dart';
 import 'package:ty_flutter_cli/router/app_router.dart';

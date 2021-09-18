@@ -2,7 +2,7 @@
  * @Description: 沙箱
  * @Author: iamsmiling
  * @Date: 2021-09-18 15:47:04
- * @LastEditTime: 2021-09-18 16:02:59
+ * @LastEditTime: 2021-09-18 16:55:00
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -16,6 +16,7 @@ import 'package:ty_flutter_cli/config/env/app_environment.dart';
 import 'package:ty_flutter_cli/pages/home/home_binding.dart';
 import 'package:ty_flutter_cli/theme/app_theme.dart';
 
+import 'config/app_config.dart';
 import 'config/initializer/initializer_manager.dart';
 import 'pages/login/login_binding.dart';
 import 'router/app_router.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
         getPages: AppRouter.pages,
         defaultTransition: Transition.cupertino,
         theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.lightTheme,
+        darkTheme: AppTheme.dartTheme,
         debugShowCheckedModeBanner:
             AppConfig.environment == AppEnvironment.develop,
         builder: (BuildContext context, Widget? child) {

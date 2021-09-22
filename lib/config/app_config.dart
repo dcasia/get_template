@@ -2,7 +2,7 @@
  * @Description: app配置
  * @Author: iamsmiling
  * @Date: 2021-09-18 16:53:52
- * @LastEditTime: 2021-09-18 17:01:42
+ * @LastEditTime: 2021-09-22 10:03:43
  */
 
 import 'package:device_info/device_info.dart';

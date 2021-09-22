@@ -2,7 +2,7 @@
  * @Description: 初始化管理统一初始化
  * @Author: iamsmiling
  * @Date: 2021-09-18 14:20:45
- * @LastEditTime: 2021-09-18 17:00:47
+ * @LastEditTime: 2021-09-22 15:20:21
  */
 import 'package:ty_flutter_cli/config/env/app_environment.dart';
 import 'package:ty_flutter_cli/config/initializer/base/device_initializer.dart';

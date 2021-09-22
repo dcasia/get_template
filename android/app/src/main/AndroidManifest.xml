@@ -39,5 +39,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- <resources>
+          <style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+              <item name="android:windowBackground">@drawable/launch_background</item>
+          </style>
+        </resources>  -->
     </application>
 </manifest>

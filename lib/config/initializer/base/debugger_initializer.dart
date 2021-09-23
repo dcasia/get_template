@@ -2,11 +2,10 @@
  * @Description: debug调试
  * @Author: iamsmiling
  * @Date: 2021-09-18 14:21:17
- * @LastEditTime: 2021-09-22 17:57:40
+ * @LastEditTime: 2021-09-23 09:20:52
  */
 import 'package:flutter/foundation.dart';
 import 'package:flutter_ume/flutter_ume.dart';
-import 'package:flutter_ume_kit_console/flutter_ume_kit_console.dart';
 import 'package:flutter_ume_kit_device/flutter_ume_kit_device.dart';
 import 'package:flutter_ume_kit_perf/components/performance/performance.dart';
 import 'package:flutter_ume_kit_perf/flutter_ume_kit_perf.dart';
@@ -25,6 +24,7 @@ class DebuggerInitializer extends BaseInitilizer {
     PluginManager.instance // 注册插件
           ..register(const WidgetInfoInspector())
           ..register(const WidgetDetailInspector())
+          ..register(DioInspector(dio: Http.instance.dio))
           ..register(const ColorSucker())
           ..register(AlignRuler())
           ..register(Performance())
@@ -32,7 +32,7 @@ class DebuggerInitializer extends BaseInitilizer {
           ..register(const MemoryInfoPage())
           ..register(CpuInfoPage())
           ..register(const DeviceInfoPanel())
-          ..register(DioInspector(dio: Http.instance.dio))
+
         // ..register(Console())
 
         ;

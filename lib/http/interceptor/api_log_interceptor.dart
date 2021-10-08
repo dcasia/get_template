@@ -2,7 +2,7 @@
  * @Description: 接口打印
  * @Author: iamsmiling
  * @Date: 2021-09-03 15:10:07
- * @LastEditTime: 2021-09-18 14:55:46
+ * @LastEditTime: 2021-09-23 09:41:16
  */
 part of http;
 
@@ -10,7 +10,7 @@ class ApiLogInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     developer.log(
-        "**********************${DateTime.now()}*************************请求路径:${AppConfig.environment.APIHOST}${options.path}***************************\n");
+        "*********${DateTime.now()}*************************请求路径:${AppConfig.environment.APIHOST}${options.path}**************\n");
 
     developer.log(
         "--------------请求query参数:${options.queryParameters}------------------\n");

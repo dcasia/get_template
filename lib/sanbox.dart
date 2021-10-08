@@ -2,7 +2,7 @@
  * @Description: 沙箱
  * @Author: iamsmiling
  * @Date: 2021-09-18 15:47:04
- * @LastEditTime: 2021-09-22 17:48:47
+ * @LastEditTime: 2021-10-08 16:02:52
  */
 // import 'package:dokit/dokit.dart';
 // import 'package:dokit/dokit.dart';
@@ -26,12 +26,6 @@ import 'router/app_router.dart';
 void sandbox(AppEnvironment env) async {
   WidgetsFlutterBinding.ensureInitialized();
   await InitializerManager.initialize(env);
-  // DoKit.runApp(
-  //   app: DoKitApp(
-  //     MyApp(),
-  //   ),
-  //   useInRelease: AppConfig.environment != AppEnvironment.product,
-  // );
   if (kDebugMode) {
     runApp(injectUMEWidget(child: const MyApp(), enable: true)); // 初始化
   } else {

@@ -2,11 +2,12 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-03 14:23:32
- * @LastEditTime: 2021-09-18 14:57:57
+ * @LastEditTime: 2021-09-23 10:55:40
  */
 library http;
 
 import 'dart:collection';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
@@ -185,7 +186,7 @@ class Http {
     final data = response.data;
 
     ///返回空字符串同样视为操作成功
-    if (data == "") {
+    if (data is String && data.isEmpty) {
       return ApiResponse.empty();
     }
     if (data is Map) {

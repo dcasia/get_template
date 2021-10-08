@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-18 14:34:27
- * @LastEditTime: 2021-09-18 16:05:03
+ * @LastEditTime: 2021-10-08 17:12:43
  */
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,6 +47,7 @@ abstract class BaseFutureLoadStateController<T> extends GetxController
       change(null, status: RxStatus.error());
       LogUtil.e(err);
       print(s);
+      throw err;
     }).whenComplete(update);
   }
 
@@ -117,18 +118,7 @@ abstract class PullToRefreshLoadStateController<T>
   }
 
   Future? onRefreshData() {
-    print(1111);
-
-    // if (refreshController.position == null) {
-    //   refreshController.requestRefresh();
-    // } else {
-    //   Future.delayed(Duration(seconds: 1), refreshController.requestRefresh);
-    //   // SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
-    //   //   refreshController.requestRefresh();
-    //   // });
-    // }
     return refreshController.requestRefresh()?.then((value) {
-      // refreshController.refreshCompleted();
       return loadData().then((value) {
         if (value is Iterable && value.isEmpty) {
           change(value, status: RxStatus.empty());

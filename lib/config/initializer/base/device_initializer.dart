@@ -2,7 +2,7 @@
  * @Description: app包信息、手机系统等
  * @Author: iamsmiling
  * @Date: 2021-09-18 16:56:57
- * @LastEditTime: 2021-09-18 17:01:18
+ * @LastEditTime: 2022-01-19 17:38:46
  */
 
 // e.g. "iPod7,1"

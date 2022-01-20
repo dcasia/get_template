@@ -2,7 +2,7 @@
  * @Description: 沙箱
  * @Author: iamsmiling
  * @Date: 2021-09-18 15:47:04
- * @LastEditTime: 2021-10-08 16:02:52
+ * @LastEditTime: 2021-11-23 14:14:36
  */
 // import 'package:dokit/dokit.dart';
 // import 'package:dokit/dokit.dart';
@@ -35,7 +35,6 @@ void sandbox(AppEnvironment env) async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

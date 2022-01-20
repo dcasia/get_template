@@ -2,10 +2,11 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-03 14:23:32
- * @LastEditTime: 2021-09-23 10:55:40
+ * @LastEditTime: 2021-11-23 13:06:33
  */
 library http;
 
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
@@ -175,11 +176,11 @@ class Http {
         // SpStorage.instance.remove(SpKey.ACCESS_SESSION);
         // SpStorage.instance.remove(SpKey.HAS_LOGIN);
         // g.Get.offAllNamed(AppRoutes.login);
-        return;
+        return error;
       }
     }
 
-    return;
+    return error;
   }
 
   ApiResponse _onData(Response response) {

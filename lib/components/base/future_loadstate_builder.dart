@@ -2,12 +2,11 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-18 14:34:27
- * @LastEditTime: 2021-10-08 17:12:43
+ * @LastEditTime: 2022-01-19 18:21:02
  */
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -18,19 +17,18 @@ onJsonModelizeError(dynamic error, StackTrace stackTrace) {
   // return JsonModelizeException();
 }
 
+///带数据加载，但不监听app前后台切换
 abstract class BaseFutureLoadStateController<T> extends GetxController
-    with StateMixin<T>, WidgetsBindingObserver {
+    with StateMixin<T> {
   Future<T> loadData({Map? params});
 
   @override
   void onInit() {
-    _fetch();
-    WidgetsBinding.instance!.addObserver(this);
+    fetchData();
     super.onInit();
   }
 
-  Future<T> fetchData() => _fetch();
-  Future<T> _fetch() {
+  Future<T> fetchData() {
     change(null, status: RxStatus.loading());
     return _loadData();
   }
@@ -52,10 +50,20 @@ abstract class BaseFutureLoadStateController<T> extends GetxController
   }
 
   Future retry() {
-    return _fetch();
+    return fetchData();
   }
 
   Future? onRefreshData() => _loadData();
+}
+
+///带app前后台事件切换
+abstract class BaseAppFutureLoadStateController<T>
+    extends BaseFutureLoadStateController<T> with WidgetsBindingObserver {
+  @override
+  void onInit() {
+    WidgetsBinding.instance!.addObserver(this);
+    super.onInit();
+  }
 
   @override
   void onClose() {
@@ -69,7 +77,7 @@ abstract class BaseFutureLoadStateController<T> extends GetxController
       case AppLifecycleState.inactive: // 处于这种状态的应用程序应该假设它们可能在任何时候暂停。
         break;
       case AppLifecycleState.resumed: // 应用程序可见，前台
-        _fetch();
+        fetchData();
         break;
       case AppLifecycleState.paused: // 应用程序不可见，后台
         break;
@@ -92,7 +100,7 @@ abstract class PullToRefreshLoadStateController<T>
 
   @override
   void onInit() {
-    super._fetch().then((value) {
+    super.fetchData().then((value) {
       refreshController = RefreshController(initialRefresh: false);
       scrollController = ScrollController();
       return value;
@@ -149,11 +157,44 @@ abstract class PullToRefreshLoadStateController<T>
   }
 }
 
+///带下拉刷新 上拉加载更多功能的controller基类
+abstract class AppPullToRefreshLoadStateController<T>
+    extends PullToRefreshLoadStateController<T> with WidgetsBindingObserver {
+  @override
+  void onInit() {
+    WidgetsBinding.instance!.addObserver(this);
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.onClose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.inactive: // 处于这种状态的应用程序应该假设它们可能在任何时候暂停。
+        break;
+      case AppLifecycleState.resumed: // 应用程序可见，前台
+        fetchData();
+        break;
+      case AppLifecycleState.paused: // 应用程序不可见，后台
+        break;
+      case AppLifecycleState.detached:
+
+        /// 申请将暂时暂停
+        break;
+    }
+  }
+}
+
 typedef GetControllerScrollBuilder<T extends DisposableInterface> = Widget
     Function(T controller);
 
 class PullToRefreshStateBuilder<T extends PullToRefreshLoadStateController>
-    extends StatelessWidget {
+    extends GetView<T> {
   final GetControllerBuilder<T> builder;
   final bool enablePullDown;
   final bool enablePullUp;
@@ -167,7 +208,6 @@ class PullToRefreshStateBuilder<T extends PullToRefreshLoadStateController>
       this.tag});
   @override
   Widget build(BuildContext context) {
-    final T controller = Get.find<T>(tag: tag);
     return SmartRefresher(
       controller: controller.refreshController,
       enablePullDown: enablePullDown,
@@ -193,14 +233,13 @@ class PullToRefreshStateBuilder<T extends PullToRefreshLoadStateController>
 }
 
 class FutureLoadStateBuilder<T extends BaseFutureLoadStateController>
-    extends StatelessWidget {
+    extends GetView<T> {
   final GetControllerBuilder<T> builder;
   final Object? id;
   final String? tag;
   FutureLoadStateBuilder({required this.builder, this.tag, this.id});
   @override
   Widget build(BuildContext context) {
-    final T controller = Get.find<T>(tag: tag);
     return controller.obx(
         (state) => GetBuilder<T>(
               tag: tag,

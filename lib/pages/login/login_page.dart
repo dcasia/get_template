@@ -2,10 +2,11 @@
  * @Description: 登录页面
  * @Author: iamsmiling
  * @Date: 2021-09-18 15:24:52
- * @LastEditTime: 2021-09-18 15:27:19
+ * @LastEditTime: 2022-02-07 17:08:33
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ty_flutter_cli/config/app_config.dart';
 import 'package:ty_flutter_cli/pages/login/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -15,7 +16,7 @@ class LoginPage extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("登录页面"),
+        title: Text("登录页面-->${AppConfig.environment.name}"),
       ),
       body: SingleChildScrollView(
         child: Form(

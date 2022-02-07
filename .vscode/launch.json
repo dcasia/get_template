@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Debug",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define",
+                "DART_DEFINE_APP_ENV=debug"
+            ]
+        },
+        {
+            "name": "Run Test",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "DART_DEFINE_APP_ENV=test"
+            ]
+        },
+        {
+            "name": "Run Prod",
+            "request": "launch",
+            "type": "dart", 
+            "args": [
+                "--dart-define",
+                "DART_DEFINE_APP_ENV=prod"
+            ]
+        }
+    ]
+}

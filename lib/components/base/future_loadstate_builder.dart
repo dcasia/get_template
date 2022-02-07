@@ -2,17 +2,17 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-18 14:34:27
- * @LastEditTime: 2022-01-19 18:21:02
+ * @LastEditTime: 2022-02-07 17:44:52
  */
-import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'dart:developer' as developer;
 
 onJsonModelizeError(dynamic error, StackTrace stackTrace) {
   // print(stackTrace);
-  LogUtil.e(stackTrace);
+  developer.log("$error", stackTrace: stackTrace);
 
   // return JsonModelizeException();
 }
@@ -43,7 +43,7 @@ abstract class BaseFutureLoadStateController<T> extends GetxController
       return value;
     }, onError: onJsonModelizeError).catchError((err, s) {
       change(null, status: RxStatus.error());
-      LogUtil.e(err);
+      developer.log("", stackTrace: err);
       print(s);
       throw err;
     }).whenComplete(update);
@@ -56,47 +56,13 @@ abstract class BaseFutureLoadStateController<T> extends GetxController
   Future? onRefreshData() => _loadData();
 }
 
-///带app前后台事件切换
-abstract class BaseAppFutureLoadStateController<T>
-    extends BaseFutureLoadStateController<T> with WidgetsBindingObserver {
-  @override
-  void onInit() {
-    WidgetsBinding.instance!.addObserver(this);
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    WidgetsBinding.instance!.removeObserver(this);
-    super.onClose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.inactive: // 处于这种状态的应用程序应该假设它们可能在任何时候暂停。
-        break;
-      case AppLifecycleState.resumed: // 应用程序可见，前台
-        fetchData();
-        break;
-      case AppLifecycleState.paused: // 应用程序不可见，后台
-        break;
-      case AppLifecycleState.detached:
-
-        /// 申请将暂时暂停
-        break;
-    }
-  }
-
-  ///回到前台刷新数据
-  Future? onAppResumed() => onRefreshData();
-}
-
 ///带下拉刷新 上拉加载更多功能的controller基类
 abstract class PullToRefreshLoadStateController<T>
     extends BaseFutureLoadStateController<T> {
   RefreshController refreshController = RefreshController();
   ScrollController scrollController = ScrollController();
+  int page = 1;
+  int totalPage = double.maxFinite ~/ 1;
 
   @override
   void onInit() {
@@ -110,7 +76,7 @@ abstract class PullToRefreshLoadStateController<T>
 
   @override
   void onReady() {
-    refreshController = new RefreshController();
+    refreshController = RefreshController();
     super.onReady();
   }
 
@@ -126,8 +92,9 @@ abstract class PullToRefreshLoadStateController<T>
   }
 
   Future? onRefreshData() {
+    page = 1;
     return refreshController.requestRefresh()?.then((value) {
-      return loadData().then((value) {
+      return loadData(params: {'page': 1}).then((value) {
         if (value is Iterable && value.isEmpty) {
           change(value, status: RxStatus.empty());
         }
@@ -138,8 +105,13 @@ abstract class PullToRefreshLoadStateController<T>
     }).whenComplete(update);
   }
 
-  Future<T> onLoadData() {
-    return loadData().then((value) {
+  Future<T>? onLoadData() {
+    if (page > totalPage) {
+      refreshController.loadNoData();
+      return null;
+    }
+    page++;
+    return loadData(params: {'page': page}).then((value) {
       if (value is Iterable && value.isEmpty) {
         refreshController.loadNoData();
         // change(value, status: RxStatus.empty());
@@ -150,43 +122,11 @@ abstract class PullToRefreshLoadStateController<T>
       return value;
     }, onError: onJsonModelizeError).catchError((err, s) {
       // change(null, status: RxStatus.error());
-      refreshController.loadComplete();
-      LogUtil.e(err);
+      page--;
+      refreshController.loadFailed();
+      developer.log("", stackTrace: err);
       print(s);
     });
-  }
-}
-
-///带下拉刷新 上拉加载更多功能的controller基类
-abstract class AppPullToRefreshLoadStateController<T>
-    extends PullToRefreshLoadStateController<T> with WidgetsBindingObserver {
-  @override
-  void onInit() {
-    WidgetsBinding.instance!.addObserver(this);
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    WidgetsBinding.instance!.removeObserver(this);
-    super.onClose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.inactive: // 处于这种状态的应用程序应该假设它们可能在任何时候暂停。
-        break;
-      case AppLifecycleState.resumed: // 应用程序可见，前台
-        fetchData();
-        break;
-      case AppLifecycleState.paused: // 应用程序不可见，后台
-        break;
-      case AppLifecycleState.detached:
-
-        /// 申请将暂时暂停
-        break;
-    }
   }
 }
 

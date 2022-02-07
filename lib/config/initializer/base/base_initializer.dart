@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-09-18 11:02:17
  */
 
-import 'package:ty_flutter_cli/config/env/app_environment.dart';
+import 'package:ty_flutter_cli/app_env.dart';
 
 abstract class BaseInitilizer {
   Future initialize(AppEnvironment env);

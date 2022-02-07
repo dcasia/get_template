@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-03 14:23:32
- * @LastEditTime: 2021-11-23 13:06:33
+ * @LastEditTime: 2022-02-07 16:00:02
  */
 library http;
 
@@ -10,14 +10,14 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:flustars/flustars.dart';
 import 'package:ty_flutter_cli/config/app_config.dart';
-import 'package:ty_flutter_cli/config/env/app_environment.dart';
+import 'package:ty_flutter_cli/app_env.dart';
 import 'package:ty_flutter_cli/constants/sp_key.dart';
 import 'package:ty_flutter_cli/router/app_router.dart';
+import 'package:ty_flutter_cli/storage/sp_util.dart';
 import 'package:ty_flutter_cli/utils/toast_util.dart';
 import 'package:get/get.dart' as g;
 import 'dart:developer' as developer;
@@ -84,6 +84,7 @@ class Http {
         //代理工具会提供一个抓包的自签名证书，会通不过证书校验，所以我们禁用证书校验
         client.badCertificateCallback =
             (X509Certificate cert, String host, int port) => true;
+        return null;
       };
     }
     dio.interceptors.addAll([

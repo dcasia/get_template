@@ -2,7 +2,7 @@
  * @Description: api返回结果拦截器
  * @Author: iamsmiling
  * @Date: 2021-09-03 15:39:38
- * @LastEditTime: 2021-09-23 10:51:10
+ * @LastEditTime: 2022-02-07 16:09:48
  */
 part of http;
 
@@ -26,7 +26,7 @@ class ApiResponseInterceptor extends Interceptor {
         // handler.reject(UnauthorisedException(code, msg ?? "未登录"));
         handler.reject(DioError(
             requestOptions: response.requestOptions,
-            error: UnauthorisedException(code, msg ?? "未登录")));
+            error: UnauthorisedException(code, msg ?? "未登录", response)));
         return;
       }
       if (code == ApiCode.notAllowed.code) {
@@ -34,14 +34,15 @@ class ApiResponseInterceptor extends Interceptor {
         // handler.reject(UnauthorisedException(code, msg ?? "未登录"));
         handler.reject(DioError(
             requestOptions: response.requestOptions,
-            error: NotAllowedException(code: code, message: msg ?? "未登录")));
+            error: NotAllowedException(
+                code: code, message: msg ?? "未登录", response: response)));
         return;
       }
       if (code != ApiCode.success.code) {
         ToastUtil.error(msg ?? "未知错误");
         handler.reject(DioError(
             requestOptions: response.requestOptions,
-            error: UnkonwException(code, msg ?? "未知错误")));
+            error: UnkonwException(code, msg ?? "未知错误", response)));
         return;
       }
     } catch (err, s) {

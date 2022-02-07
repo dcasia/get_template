@@ -2,7 +2,7 @@
  * @Description: api缓存相关拦截器
  * @Author: iamsmiling
  * @Date: 2021-09-03 15:37:00
- * @LastEditTime: 2021-09-18 14:52:26
+ * @LastEditTime: 2022-02-07 15:34:32
  */
 part of http;
 
@@ -89,7 +89,7 @@ class ApiCacheInterceptor extends Interceptor {
 
       // 2 磁盘缓存
       if (cacheDisk) {
-        var cacheData = SpUtil.getObject(key);
+        var cacheData = SpUtil.getJson(key);
         if (cacheData != null) {
           handler.resolve(Response(
             statusCode: 200,
@@ -133,7 +133,7 @@ class ApiCacheInterceptor extends Interceptor {
 
       // 磁盘缓存
       if (options.extra["cacheDisk"] == true) {
-        await SpUtil.putObject(key, object.data);
+        await SpUtil.setJson(key, object.data);
       }
 
       // 内存缓存

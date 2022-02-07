@@ -1,0 +1,10 @@
+//
+//  EnvConfig.xcconfig
+//  Runner
+//
+//  Created by 林小强 on 2022/2/7.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+APP_ENV=test

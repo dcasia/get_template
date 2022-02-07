@@ -17,7 +17,15 @@ default_platform(:ios)
 
 platform :ios do
   desc "Description of what the lane does"
-  lane :ad_hoc do
-    build_ios_app
+  lane :development do
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "dev", xcargs: "-allowProvisioningUpdates")
+    upload_to_testflight
+  end
+
+  lane :production do
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "prod", xcargs: "-allowProvisioningUpdates")
+    upload_to_testflight
   end
 end

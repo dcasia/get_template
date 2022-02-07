@@ -31,25 +31,15 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  # 调试相关
-  flutter_ume: ^0.2.1 
-  flutter_ume_kit_ui: ^0.2.1  
-  flutter_ume_kit_device: ^0.2.1 
-  flutter_ume_kit_perf: ^0.2.1  
-  flutter_ume_kit_show_code: ^0.2.1  
-  flutter_ume_kit_console:  ^0.2.1
-  flutter_ume_kit_dio: ^0.2.0
   # dokit: ^0.8.0-nullsafety.0
-  get: ^4.3.8
-  dio: ^4.0.0
+  get: ^4.6.1
+  dio: ^4.0.4
   flutter_easyloading: ^3.0.0
-  connectivity: ^3.0.6
-  webview_flutter: ^2.0.10
+  connectivity_plus: ^2.2.0
   pull_to_refresh: ^2.0.0
-  flustars: ^2.0.1
   package_info: ^2.0.2
   device_info: ^2.0.2
-  flutter_xupdate: ^2.0.1
+  shared_preferences: ^2.0.13
   # dokit:
   #   git: git@gitlab.taiyi-tech.com:linxiaoqiang/dokit.git
 
@@ -61,7 +51,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

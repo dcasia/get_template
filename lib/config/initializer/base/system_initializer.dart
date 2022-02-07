@@ -6,7 +6,7 @@
  */
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ty_flutter_cli/app_env.dart';
+import 'package:dc_flutter_cli/app_env.dart';
 
 import 'base_initializer.dart';
 

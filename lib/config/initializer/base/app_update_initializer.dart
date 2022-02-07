@@ -5,7 +5,7 @@
 //  * @LastEditTime: 2021-09-22 16:27:33
 //  */
 
-// import 'package:ty_flutter_cli/config/env/app_environment.dart';
+// import 'package:dc_flutter_cli/config/env/app_environment.dart';
 // import 'package:flutter_xupdate/flutter_xupdate.dart';
 // import 'base_initializer.dart';
 

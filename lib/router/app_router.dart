@@ -7,13 +7,13 @@
 library app_router;
 
 import 'package:get/route_manager.dart';
-import 'package:ty_flutter_cli/constants/sp_key.dart';
-import 'package:ty_flutter_cli/pages/404/unknown_page.dart';
-import 'package:ty_flutter_cli/pages/home/home_binding.dart';
-import 'package:ty_flutter_cli/pages/home/home_page.dart';
-import 'package:ty_flutter_cli/pages/login/login_binding.dart';
-import 'package:ty_flutter_cli/pages/login/login_page.dart';
-import 'package:ty_flutter_cli/storage/sp_util.dart';
+import 'package:dc_flutter_cli/constants/sp_key.dart';
+import 'package:dc_flutter_cli/pages/404/unknown_page.dart';
+import 'package:dc_flutter_cli/pages/home/home_binding.dart';
+import 'package:dc_flutter_cli/pages/home/home_page.dart';
+import 'package:dc_flutter_cli/pages/login/login_binding.dart';
+import 'package:dc_flutter_cli/pages/login/login_page.dart';
+import 'package:dc_flutter_cli/storage/sp_util.dart';
 part 'app_routes.dart';
 
 abstract class AppRouter {

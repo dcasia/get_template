@@ -2,16 +2,16 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-09-18 10:42:46
- * @LastEditTime: 2022-02-07 17:45:54
+ * @LastEditTime: 2022-02-07 17:50:13
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:ty_flutter_cli/app_env.dart';
-import 'package:ty_flutter_cli/pages/home/home_binding.dart';
-import 'package:ty_flutter_cli/theme/app_theme.dart';
+import 'package:dc_flutter_cli/app_env.dart';
+import 'package:dc_flutter_cli/pages/home/home_binding.dart';
+import 'package:dc_flutter_cli/theme/app_theme.dart';
 
 import 'config/app_config.dart';
 import 'config/initializer/initializer_manager.dart';

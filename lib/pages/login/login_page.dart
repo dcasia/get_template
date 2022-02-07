@@ -6,8 +6,8 @@
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ty_flutter_cli/config/app_config.dart';
-import 'package:ty_flutter_cli/pages/login/login_controller.dart';
+import 'package:dc_flutter_cli/config/app_config.dart';
+import 'package:dc_flutter_cli/pages/login/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
   const LoginPage({Key? key}) : super(key: key);

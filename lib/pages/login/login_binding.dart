@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-09-18 15:29:35
  */
 import 'package:get/get.dart';
-import 'package:ty_flutter_cli/pages/login/login_controller.dart';
+import 'package:dc_flutter_cli/pages/login/login_controller.dart';
 
 class LoginBinding extends Bindings {
   @override

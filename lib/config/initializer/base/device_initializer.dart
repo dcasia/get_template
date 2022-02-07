@@ -9,8 +9,8 @@
 import 'package:device_info/device_info.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
-import 'package:ty_flutter_cli/config/app_config.dart';
-import 'package:ty_flutter_cli/app_env.dart';
+import 'package:dc_flutter_cli/config/app_config.dart';
+import 'package:dc_flutter_cli/app_env.dart';
 
 import 'base_initializer.dart';
 

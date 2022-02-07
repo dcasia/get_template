@@ -6,7 +6,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ty_flutter_cli/res/R.dart';
+import 'package:dc_flutter_cli/res/R.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
